@@ -17,7 +17,7 @@ void GattCharacteristic1::StopNotify() {
     _conn->send_with_reply_and_block(msg);
 }
 
-void GattCharacteristic1::WriteValue(const ByteArray& value, WriteType type) {
+void GattCharacteristic1::WriteValue(const ByteStrArray& value, WriteType type) {
     SimpleDBus::Holder value_data = SimpleDBus::Holder::create_array();
     for (size_t i = 0; i < value.size(); i++) {
         value_data.array_append(SimpleDBus::Holder::create_byte(value[i]));
@@ -36,7 +36,7 @@ void GattCharacteristic1::WriteValue(const ByteArray& value, WriteType type) {
     _conn->send_with_reply_and_block(msg);
 }
 
-ByteArray GattCharacteristic1::ReadValue() {
+ByteStrArray GattCharacteristic1::ReadValue() {
     auto msg = create_method_call("ReadValue");
 
     // NOTE: ReadValue requires an additional argument, which currently is not supported
@@ -56,7 +56,7 @@ std::string GattCharacteristic1::UUID() {
     return _uuid;
 }
 
-ByteArray GattCharacteristic1::Value() {
+ByteStrArray GattCharacteristic1::Value() {
     std::scoped_lock lock(_property_update_mutex);
     return _value;
 }
@@ -88,6 +88,6 @@ void GattCharacteristic1::update_value(SimpleDBus::Holder& new_value) {
     for (unsigned int i = 0; i < value_array.size(); i++) {
         value_data[i] = value_array[i].get_byte();
     }
-    _value = ByteArray(value_data, value_array.size());
+    _value = ByteStrArray(value_data, value_array.size());
     delete[] value_data;
 }

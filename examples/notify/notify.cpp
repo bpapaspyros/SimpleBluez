@@ -24,7 +24,7 @@ void millisecond_delay(int ms) {
     }
 }
 
-void print_byte_array(SimpleBluez::ByteArray& bytes) {
+void print_byte_array(SimpleBluez::ByteStrArray& bytes) {
     for (auto byte : bytes) {
         std::cout << std::hex << std::setfill('0') << (uint32_t)((uint8_t)byte) << " ";
         break;
@@ -118,7 +118,7 @@ int main(int argc, char* argv[]) {
         if (selection >= 0 && selection < char_list.size()) {
             auto characteristic = char_list[selection].second;
             characteristic->set_on_value_changed(
-                [&](SimpleBluez::ByteArray new_value) { print_byte_array(new_value); });
+                [&](SimpleBluez::ByteStrArray new_value) { print_byte_array(new_value); });
 
             characteristic->start_notify();
             millisecond_delay(5000);

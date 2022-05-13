@@ -24,7 +24,7 @@ void millisecond_delay(int ms) {
     }
 }
 
-void print_byte_array(SimpleBluez::ByteArray& bytes) {
+void print_byte_array(SimpleBluez::ByteStrArray& bytes) {
     for (auto byte : bytes) {
         std::cout << std::hex << std::setfill('0') << (uint32_t)((uint8_t)byte) << " ";
         break;
@@ -116,7 +116,7 @@ int main(int argc, char* argv[]) {
         std::cin >> selection;
 
         if (selection >= 0 && selection < char_list.size()) {
-            SimpleBluez::ByteArray value = char_list[selection].second->read();
+            SimpleBluez::ByteStrArray value = char_list[selection].second->read();
             std::cout << "Characteristic contents were: ";
             print_byte_array(value);
         }

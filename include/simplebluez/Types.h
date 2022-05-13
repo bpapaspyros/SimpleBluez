@@ -4,6 +4,7 @@
 
 namespace SimpleBluez {
 
-typedef std::string ByteArray;
+using ByteStrArray = std::string;
+using ByteArray = uint8_t*;
 
-}
+}  // namespace SimpleBluez

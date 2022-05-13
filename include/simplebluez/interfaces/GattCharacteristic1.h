@@ -1,7 +1,7 @@
 #pragma once
 
-#include <simpledbus/external/kvn_safe_callback.hpp>
 #include <simpledbus/advanced/Interface.h>
+#include <simpledbus/external/kvn_safe_callback.hpp>
 
 #include <simplebluez/Types.h>
 
@@ -19,12 +19,12 @@ class GattCharacteristic1 : public SimpleDBus::Interface {
     // ----- METHODS -----
     void StartNotify();
     void StopNotify();
-    void WriteValue(const ByteArray& value, WriteType type);
-    ByteArray ReadValue();
+    void WriteValue(const ByteStrArray& value, WriteType type);
+    ByteStrArray ReadValue();
 
     // ----- PROPERTIES -----
     std::string UUID();
-    ByteArray Value();
+    ByteStrArray Value();
     bool Notifying(bool refresh = true);
 
     // ----- CALLBACKS -----
@@ -35,7 +35,7 @@ class GattCharacteristic1 : public SimpleDBus::Interface {
     void update_value(SimpleDBus::Holder& new_value);
 
     std::string _uuid;
-    ByteArray _value;
+    ByteStrArray _value;
 };
 
 }  // namespace SimpleBluez
