@@ -43,10 +43,12 @@ class GattCharacteristic1 : public SimpleDBus::Interface {
     }
 
     ByteStrArray ReadValue();
+    ByteArray ReadValueBytes();
 
     // ----- PROPERTIES -----
     std::string UUID();
     ByteStrArray Value();
+    ByteArray ValueBytes();
     bool Notifying(bool refresh = true);
 
     // ----- CALLBACKS -----
@@ -58,6 +60,7 @@ class GattCharacteristic1 : public SimpleDBus::Interface {
 
     std::string _uuid;
     ByteStrArray _value;
+    ByteArray _value_b;
 };
 
 }  // namespace SimpleBluez

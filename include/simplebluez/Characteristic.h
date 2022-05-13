@@ -16,6 +16,7 @@ class Characteristic : public SimpleDBus::Proxy {
 
     // ----- METHODS -----
     ByteStrArray read();
+    ByteArray readBytes();
     void write_request(ByteStrArray value);
     void write_request(ByteArray value);
     void write_command(ByteStrArray value);
@@ -30,6 +31,7 @@ class Characteristic : public SimpleDBus::Proxy {
 
     // ----- CALLBACKS -----
     void set_on_value_changed(std::function<void(ByteStrArray new_value)> callback);
+    void set_on_value_changed(std::function<void(ByteArray new_value)> callback);
     void clear_on_value_changed();
 
   private:
