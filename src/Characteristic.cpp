@@ -37,6 +37,10 @@ void Characteristic::write_command(ByteStrArray value) {
     gattcharacteristic1()->WriteValue(value, GattCharacteristic1::WriteType::COMMAND);
 }
 
+void Characteristic::write_command(ByteArray value, const int size) {
+    gattcharacteristic1()->WriteValue(value, size,  GattCharacteristic1::WriteType::COMMAND);
+}
+
 void Characteristic::start_notify() { gattcharacteristic1()->StartNotify(); }
 
 void Characteristic::stop_notify() { gattcharacteristic1()->StopNotify(); }

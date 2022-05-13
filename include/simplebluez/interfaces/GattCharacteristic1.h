@@ -20,6 +20,7 @@ class GattCharacteristic1 : public SimpleDBus::Interface {
     void StartNotify();
     void StopNotify();
     void WriteValue(const ByteStrArray& value, WriteType type);
+    void WriteValue(const ByteArray value, const int size, WriteType type);
     ByteStrArray ReadValue();
 
     // ----- PROPERTIES -----
