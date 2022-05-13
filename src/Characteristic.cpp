@@ -37,7 +37,7 @@ void Characteristic::write_command(ByteStrArray value) {
     gattcharacteristic1()->WriteValue(value, GattCharacteristic1::WriteType::COMMAND);
 }
 
-void Characteristic::write_command(ByteArray value, const int size) {
+void Characteristic::write_command(ByteArray value, const size_t size) {
     gattcharacteristic1()->WriteValue(value, size,  GattCharacteristic1::WriteType::COMMAND);
 }
 

@@ -36,9 +36,9 @@ void GattCharacteristic1::WriteValue(const ByteStrArray& value, WriteType type) 
     _conn->send_with_reply_and_block(msg);
 }
 
-void GattCharacteristic1::WriteValue(const ByteArray value, const int size, WriteType type) {
+void GattCharacteristic1::WriteValue(const ByteArray value, const size_t size, WriteType type) {
     // SimpleDBus::Holder value_data = SimpleDBus::Holder::create_array();
-    // for (size_t i = 0; i < value.size(); i++) {
+    // for (size_t i = 0; i < size; i++) {
     //     value_data.array_append(SimpleDBus::Holder::create_byte(value[i]));
     // }
 
