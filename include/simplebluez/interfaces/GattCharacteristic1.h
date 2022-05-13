@@ -7,6 +7,8 @@
 
 #include <string>
 
+#define MAX_BYTEARRAY_SIZE 20
+
 namespace SimpleBluez {
 
 class GattCharacteristic1 : public SimpleDBus::Interface {
@@ -37,6 +39,8 @@ class GattCharacteristic1 : public SimpleDBus::Interface {
 
     std::string _uuid;
     ByteStrArray _value;
+    uint8_t _value_b[MAX_BYTEARRAY_SIZE];
+    size_t _value_b_sz;
 };
 
 }  // namespace SimpleBluez
