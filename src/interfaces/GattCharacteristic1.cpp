@@ -17,43 +17,44 @@ void GattCharacteristic1::StopNotify() {
     _conn->send_with_reply_and_block(msg);
 }
 
-void GattCharacteristic1::WriteValue(const ByteStrArray& value, WriteType type) {
-    SimpleDBus::Holder value_data = SimpleDBus::Holder::create_array();
-    for (size_t i = 0; i < value.size(); i++) {
-        value_data.array_append(SimpleDBus::Holder::create_byte(value[i]));
-    }
+// template <typename T>
+// void GattCharacteristic1::WriteValue(const T& value, WriteType type) {
+//     SimpleDBus::Holder value_data = SimpleDBus::Holder::create_array();
+//     for (size_t i = 0; i < value.size(); i++) {
+//         value_data.array_append(SimpleDBus::Holder::create_byte(value[i]));
+//     }
 
-    SimpleDBus::Holder options = SimpleDBus::Holder::create_dict();
-    if (type == WriteType::REQUEST) {
-        options.dict_append(SimpleDBus::Holder::Type::STRING, "type", SimpleDBus::Holder::create_string("request"));
-    } else if (type == WriteType::COMMAND) {
-        options.dict_append(SimpleDBus::Holder::Type::STRING, "type", SimpleDBus::Holder::create_string("command"));
-    }
+//     SimpleDBus::Holder options = SimpleDBus::Holder::create_dict();
+//     if (type == WriteType::REQUEST) {
+//         options.dict_append(SimpleDBus::Holder::Type::STRING, "type", SimpleDBus::Holder::create_string("request"));
+//     } else if (type == WriteType::COMMAND) {
+//         options.dict_append(SimpleDBus::Holder::Type::STRING, "type", SimpleDBus::Holder::create_string("command"));
+//     }
 
-    auto msg = create_method_call("WriteValue");
-    msg.append_argument(value_data, "ay");
-    msg.append_argument(options, "a{sv}");
-    _conn->send_with_reply_and_block(msg);
-}
+//     auto msg = create_method_call("WriteValue");
+//     msg.append_argument(value_data, "ay");
+//     msg.append_argument(options, "a{sv}");
+//     _conn->send_with_reply_and_block(msg);
+// }
 
-void GattCharacteristic1::WriteValue(const ByteArray value, const size_t size, WriteType type) {
-    SimpleDBus::Holder value_data = SimpleDBus::Holder::create_array();
-    for (size_t i = 0; i < size; i++) {
-        value_data.array_append(SimpleDBus::Holder::create_byte(value[i]));
-    }
+// void GattCharacteristic1::WriteValue(const ByteArray& value, WriteType type) {
+//     SimpleDBus::Holder value_data = SimpleDBus::Holder::create_array();
+//     for (size_t i = 0; i < value.size(); i++) {
+//         value_data.array_append(SimpleDBus::Holder::create_byte(value[i]));
+//     }
 
-    SimpleDBus::Holder options = SimpleDBus::Holder::create_dict();
-    if (type == WriteType::REQUEST) {
-        options.dict_append(SimpleDBus::Holder::Type::STRING, "type", SimpleDBus::Holder::create_string("request"));
-    } else if (type == WriteType::COMMAND) {
-        options.dict_append(SimpleDBus::Holder::Type::STRING, "type", SimpleDBus::Holder::create_string("command"));
-    }
+//     SimpleDBus::Holder options = SimpleDBus::Holder::create_dict();
+//     if (type == WriteType::REQUEST) {
+//         options.dict_append(SimpleDBus::Holder::Type::STRING, "type", SimpleDBus::Holder::create_string("request"));
+//     } else if (type == WriteType::COMMAND) {
+//         options.dict_append(SimpleDBus::Holder::Type::STRING, "type", SimpleDBus::Holder::create_string("command"));
+//     }
 
-    auto msg = create_method_call("WriteValue");
-    msg.append_argument(value_data, "ay");
-    msg.append_argument(options, "a{sv}");
-    _conn->send_with_reply_and_block(msg);
-}
+//     auto msg = create_method_call("WriteValue");
+//     msg.append_argument(value_data, "ay");
+//     msg.append_argument(options, "a{sv}");
+//     _conn->send_with_reply_and_block(msg);
+// }
 
 ByteStrArray GattCharacteristic1::ReadValue() {
     auto msg = create_method_call("ReadValue");

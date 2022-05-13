@@ -17,9 +17,9 @@ class Characteristic : public SimpleDBus::Proxy {
     // ----- METHODS -----
     ByteStrArray read();
     void write_request(ByteStrArray value);
-    void write_request(ByteArray value, const size_t size);
+    void write_request(ByteArray value);
     void write_command(ByteStrArray value);
-    void write_command(ByteArray value, const size_t size);
+    void write_command(ByteArray value);
     void start_notify();
     void stop_notify();
 
