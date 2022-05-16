@@ -4,7 +4,7 @@ if (SIMPLEDBUS_VENDORIZE)
 
     # Load default parameters passed in through the command line.
     if(NOT SIMPLEDBUS_GIT_REPOSITORY)
-        set(SIMPLEDBUS_GIT_REPOSITORY "https://github.com/OpenBluetoothToolbox/SimpleDBus.git")
+        set(SIMPLEDBUS_GIT_REPOSITORY "git@github.com:bpapaspyros/SimpleDBus.git")
     endif()
     if(NOT SIMPLEDBUS_GIT_TAG)
         set(SIMPLEDBUS_GIT_TAG "master") # TODO: Switch to the latest SimpleDBus release once done.
