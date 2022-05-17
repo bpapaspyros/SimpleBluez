@@ -24,7 +24,7 @@ void millisecond_delay(int ms) {
     }
 }
 
-void print_byte_array(SimpleBluez::ByteArray& bytes) {
+void print_byte_array(SimpleBluez::ByteStrArray& bytes) {
     for (auto byte : bytes) {
         std::cout << std::hex << std::setfill('0') << (uint32_t)((uint8_t)byte) << " ";
         break;
@@ -111,7 +111,8 @@ int main(int argc, char* argv[]) {
         auto characteristic_tx = peripheral->get_characteristic("6e400001-b5a3-f393-e0a9-e50e24dcca9e",
                                                                 "6e400003-b5a3-f393-e0a9-e50e24dcca9e");
 
-        characteristic_tx->set_on_value_changed([&](SimpleBluez::ByteArray new_value) { print_byte_array(new_value); });
+        characteristic_tx->set_on_value_changed(
+            [&](SimpleBluez::ByteStrArray new_value) { print_byte_array(new_value); });
 
         characteristic_tx->start_notify();
         millisecond_delay(3000);

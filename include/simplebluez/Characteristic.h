@@ -15,18 +15,22 @@ class Characteristic : public SimpleDBus::Proxy {
     virtual ~Characteristic();
 
     // ----- METHODS -----
-    ByteArray read();
+    ByteStrArray read();
+    ByteArray readBytes();
+    void write_request(ByteStrArray value);
     void write_request(ByteArray value);
+    void write_command(ByteStrArray value);
     void write_command(ByteArray value);
     void start_notify();
     void stop_notify();
 
     // ----- PROPERTIES -----
     std::string uuid();
-    ByteArray value();
+    ByteStrArray value();
     bool notifying();
 
     // ----- CALLBACKS -----
+    void set_on_value_changed(std::function<void(ByteStrArray new_value)> callback);
     void set_on_value_changed(std::function<void(ByteArray new_value)> callback);
     void clear_on_value_changed();
 

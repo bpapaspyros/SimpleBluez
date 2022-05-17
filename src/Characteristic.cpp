@@ -25,12 +25,22 @@ bool Characteristic::notifying() { return gattcharacteristic1()->Notifying(); }
 
 std::string Characteristic::uuid() { return gattcharacteristic1()->UUID(); }
 
-ByteArray Characteristic::value() { return gattcharacteristic1()->Value(); }
+ByteStrArray Characteristic::value() { return gattcharacteristic1()->Value(); }
 
-ByteArray Characteristic::read() { return gattcharacteristic1()->ReadValue(); }
+ByteStrArray Characteristic::read() { return gattcharacteristic1()->ReadValue(); }
+
+ByteArray Characteristic::readBytes() { return gattcharacteristic1()->ReadValueBytes(); }
+
+void Characteristic::write_request(ByteStrArray value) {
+    gattcharacteristic1()->WriteValue(value, GattCharacteristic1::WriteType::REQUEST);
+}
 
 void Characteristic::write_request(ByteArray value) {
     gattcharacteristic1()->WriteValue(value, GattCharacteristic1::WriteType::REQUEST);
+}
+
+void Characteristic::write_command(ByteStrArray value) {
+    gattcharacteristic1()->WriteValue(value, GattCharacteristic1::WriteType::COMMAND);
 }
 
 void Characteristic::write_command(ByteArray value) {
@@ -41,8 +51,12 @@ void Characteristic::start_notify() { gattcharacteristic1()->StartNotify(); }
 
 void Characteristic::stop_notify() { gattcharacteristic1()->StopNotify(); }
 
-void Characteristic::set_on_value_changed(std::function<void(ByteArray new_value)> callback) {
+void Characteristic::set_on_value_changed(std::function<void(ByteStrArray new_value)> callback) {
     gattcharacteristic1()->OnValueChanged.load([this, callback]() { callback(gattcharacteristic1()->Value()); });
+}
+
+void Characteristic::set_on_value_changed(std::function<void(ByteArray new_value)> callback) {
+    gattcharacteristic1()->OnValueChanged.load([this, callback]() { callback(gattcharacteristic1()->ValueBytes()); });
 }
 
 void Characteristic::clear_on_value_changed() { gattcharacteristic1()->OnValueChanged.unload(); }
