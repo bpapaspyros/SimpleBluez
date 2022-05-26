@@ -39,7 +39,13 @@ class GattCharacteristic1 : public SimpleDBus::Interface {
         auto msg = create_method_call("WriteValue");
         msg.append_argument(value_data, "ay");
         msg.append_argument(options, "a{sv}");
-        _conn->send_with_reply_and_block(msg);
+
+        if (type == WriteType::REQUEST) {
+            _conn->send_with_reply_and_block(msg);
+
+        } else {
+            _conn->send(msg);
+        }
     }
 
     ByteStrArray ReadValue();
