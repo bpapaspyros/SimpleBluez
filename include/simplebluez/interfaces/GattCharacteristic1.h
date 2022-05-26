@@ -45,7 +45,7 @@ class GattCharacteristic1 : public SimpleDBus::Interface {
 
         } else {
             // _conn->send(msg); // ! simple send still hangs waiting for acknowledgement.... not sure why
-            _conn->send_with_reply_and_block(msg, 0);  // ! instead use send with block with a very short timeout
+            _conn->send_with_reply_and_block(msg, 5);  // ! instead use send with block with a very short timeout
         }
     }
 
