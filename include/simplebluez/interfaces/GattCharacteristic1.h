@@ -44,8 +44,8 @@ class GattCharacteristic1 : public SimpleDBus::Interface {
             _conn->send_with_reply_and_block(msg);
 
         } else {
-            _conn->send(msg);
-            // _conn->send_with_reply_and_block(msg, 0);
+            // _conn->send(msg);
+            _conn->send_with_reply_and_block(msg, 1);
         }
     }
 
