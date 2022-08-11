@@ -116,4 +116,13 @@ if(STANDALONE)
     install(
         FILES ${CMAKE_CURRENT_BINARY_DIR}/simplebluez.pc
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
+else()
+    set(
+        SIMPLEBLUEZ_INCLUDES
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+        ${CMAKE_CURRENT_SOURCE_DIR}/src
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/legacy
+        ${SIMPLEDBUS_INCLUDES}
+        PARENT_SCOPE
+    )
 endif()
