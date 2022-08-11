@@ -16,11 +16,14 @@ class Descriptor : public SimpleDBus::Proxy {
 
     // ----- METHODS -----
     ByteStrArray read();
+    ByteArray readBytes();
     void write(ByteStrArray value);
+    void write(ByteArray value);
 
     // ----- PROPERTIES -----
     std::string uuid();
     ByteStrArray value();
+    ByteArray valueBytes();
 
     // ----- CALLBACKS -----
     void set_on_value_changed(std::function<void(ByteStrArray new_value)> callback);
