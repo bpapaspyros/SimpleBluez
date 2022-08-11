@@ -29,7 +29,7 @@ if(SIMPLEDBUS_VENDORIZE)
         if(NOT simpledbus_POPULATED)
             FetchContent_Populate(simpledbus)
             list(APPEND CMAKE_MODULE_PATH "${simpledbus_SOURCE_DIR}/cmake/find")
-            add_subdirectory("${simpledbus_SOURCE_DIR}" "${simpledbus_BINARY_DIR}")
+            add_subdirectory(${simpledbus_SOURCE_DIR} ${simpledbus_BINARY_DIR})
         endif()
 
     else()
@@ -44,4 +44,11 @@ if(SIMPLEDBUS_VENDORIZE)
     # found in the documentation of find_package() and
     # https://cmake.org/cmake/help/latest/manual/cmake-developer.7.html
     set(simpledbus_FOUND 1)
+<<<<<<< HEAD
+=======
+
+else()
+    find_package(simpledbus CONFIG REQUIRED)
+
+>>>>>>> upstream/feature/next
 endif()
