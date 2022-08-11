@@ -15,12 +15,12 @@ class GattDescriptor1 : public SimpleDBus::Interface {
     virtual ~GattDescriptor1();
 
     // ----- METHODS -----
-    void WriteValue(const ByteArray& value);
-    ByteArray ReadValue();
+    void WriteValue(const ByteStrArray& value);
+    ByteStrArray ReadValue();
 
     // ----- PROPERTIES -----
     std::string UUID();
-    ByteArray Value();
+    ByteStrArray Value();
 
     // ----- CALLBACKS -----
     kvn::safe_callback<void()> OnValueChanged;
@@ -30,7 +30,7 @@ class GattDescriptor1 : public SimpleDBus::Interface {
     void update_value(SimpleDBus::Holder& new_value);
 
     std::string _uuid;
-    ByteArray _value;
+    ByteStrArray _value;
 };
 
 }  // namespace SimpleBluez

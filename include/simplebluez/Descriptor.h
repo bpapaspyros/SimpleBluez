@@ -15,15 +15,15 @@ class Descriptor : public SimpleDBus::Proxy {
     virtual ~Descriptor();
 
     // ----- METHODS -----
-    ByteArray read();
-    void write(ByteArray value);
+    ByteStrArray read();
+    void write(ByteStrArray value);
 
     // ----- PROPERTIES -----
     std::string uuid();
-    ByteArray value();
+    ByteStrArray value();
 
     // ----- CALLBACKS -----
-    void set_on_value_changed(std::function<void(ByteArray new_value)> callback);
+    void set_on_value_changed(std::function<void(ByteStrArray new_value)> callback);
     void clear_on_value_changed();
 
   private:

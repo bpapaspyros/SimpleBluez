@@ -44,11 +44,7 @@ if(SIMPLEDBUS_VENDORIZE)
     # found in the documentation of find_package() and
     # https://cmake.org/cmake/help/latest/manual/cmake-developer.7.html
     set(simpledbus_FOUND 1)
-<<<<<<< HEAD
-=======
 
 else()
     find_package(simpledbus CONFIG REQUIRED)
-
->>>>>>> upstream/feature/next
 endif()

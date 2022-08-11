@@ -85,12 +85,8 @@ void GattCharacteristic1::update_value(SimpleDBus::Holder& new_value) {
     auto value_array = new_value.get_array();
 
     char* value_data = new char[value_array.size()];
-<<<<<<< HEAD
     _value_b.resize(value_array.size());
     for (unsigned int i = 0; i < value_array.size(); i++) {
-=======
-    for (std::size_t i = 0; i < value_array.size(); i++) {
->>>>>>> upstream/feature/next
         value_data[i] = value_array[i].get_byte();
         _value_b[i] = value_array[i].get_byte();
     }

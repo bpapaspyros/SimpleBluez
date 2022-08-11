@@ -85,18 +85,17 @@ if(SIMPLEBLUEZ_SANITIZE MATCHES "Thread")
     target_link_libraries(simplebluez PUBLIC ${SANITIZE_THREAD_LINK_OPTIONS})
 endif()
 
-
 if(STANDALONE)
     message(STATUS "Generating install interface for SimpleBluez")
 
-    if (SIMPLEDBUS_VENDORIZE)
+    if(SIMPLEDBUS_VENDORIZE)
         set(SIMPLEDBUS_TARGET simpledbus)
     endif()
 
     include(GNUInstallDirs)
 
     configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/simplebluez.pc.in
-                ${CMAKE_CURRENT_BINARY_DIR}/simplebluez.pc @ONLY)
+        ${CMAKE_CURRENT_BINARY_DIR}/simplebluez.pc @ONLY)
 
     install(
         TARGETS simplebluez ${SIMPLEDBUS_TARGET}
@@ -117,24 +116,4 @@ if(STANDALONE)
     install(
         FILES ${CMAKE_CURRENT_BINARY_DIR}/simplebluez.pc
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
-
-<<<<<<< HEAD
-target_link_libraries(simplebluez-static PUBLIC simpledbus-static pthread ${EXTRA_LINK_OPTIONS})
-target_link_libraries(simplebluez PUBLIC simpledbus-static pthread ${EXTRA_LINK_OPTIONS})
-
-target_link_libraries(simplebluez-static PRIVATE fmt::fmt-header-only)
-target_link_libraries(simplebluez PRIVATE fmt::fmt-header-only)
-
-# Export the variables needed by the parent project
-if(NOT ${STANDALONE})
-    set(
-        SIMPLEBLUEZ_INCLUDES
-        ${CMAKE_CURRENT_SOURCE_DIR}/include
-        ${CMAKE_CURRENT_SOURCE_DIR}/src
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/legacy
-        ${SIMPLEDBUS_INCLUDES}
-        PARENT_SCOPE
-    )
-=======
->>>>>>> upstream/feature/next
 endif()

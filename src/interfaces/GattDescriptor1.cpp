@@ -7,7 +7,7 @@ GattDescriptor1::GattDescriptor1(std::shared_ptr<SimpleDBus::Connection> conn, s
 
 GattDescriptor1::~GattDescriptor1() { OnValueChanged.unload(); }
 
-void GattDescriptor1::WriteValue(const ByteArray& value) {
+void GattDescriptor1::WriteValue(const ByteStrArray& value) {
     SimpleDBus::Holder value_data = SimpleDBus::Holder::create_array();
     for (size_t i = 0; i < value.size(); i++) {
         value_data.array_append(SimpleDBus::Holder::create_byte(value[i]));
@@ -21,7 +21,7 @@ void GattDescriptor1::WriteValue(const ByteArray& value) {
     _conn->send_with_reply_and_block(msg);
 }
 
-ByteArray GattDescriptor1::ReadValue() {
+ByteStrArray GattDescriptor1::ReadValue() {
     auto msg = create_method_call("ReadValue");
 
     // NOTE: ReadValue requires an additional argument, which currently is not supported
@@ -41,7 +41,7 @@ std::string GattDescriptor1::UUID() {
     return _uuid;
 }
 
-ByteArray GattDescriptor1::Value() {
+ByteStrArray GattDescriptor1::Value() {
     std::scoped_lock lock(_property_update_mutex);
     return _value;
 }
@@ -64,6 +64,6 @@ void GattDescriptor1::update_value(SimpleDBus::Holder& new_value) {
     for (std::size_t i = 0; i < value_array.size(); i++) {
         value_data[i] = value_array[i].get_byte();
     }
-    _value = ByteArray(value_data, value_array.size());
+    _value = std::string(value_data);
     delete[] value_data;
 }
