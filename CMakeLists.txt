@@ -18,7 +18,7 @@ if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
     set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
     set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-    
+
     # Nice hack to automatically ignore the build directory
     file(WRITE ${CMAKE_BINARY_DIR}/.gitignore "*")
 else()
@@ -68,11 +68,11 @@ target_link_libraries(simplebluez PRIVATE fmt::fmt-header-only)
 # Export the variables needed by the parent project
 if(NOT ${STANDALONE})
     set(
-        SIMPLEBLUEZ_INCLUDES 
+        SIMPLEBLUEZ_INCLUDES
         ${CMAKE_CURRENT_SOURCE_DIR}/include
         ${CMAKE_CURRENT_SOURCE_DIR}/src
         ${CMAKE_CURRENT_SOURCE_DIR}/src/legacy
         ${SIMPLEDBUS_INCLUDES}
         PARENT_SCOPE
-        )
+    )
 endif()

@@ -1,13 +1,15 @@
 include(FetchContent)
 
-if (SIMPLEDBUS_VENDORIZE)
-
+if(SIMPLEDBUS_VENDORIZE)
     # Load default parameters passed in through the command line.
     if(NOT SIMPLEDBUS_GIT_REPOSITORY)
         set(SIMPLEDBUS_GIT_REPOSITORY "git@github.com:bpapaspyros/SimpleDBus.git")
     endif()
+
     if(NOT SIMPLEDBUS_GIT_TAG)
-        set(SIMPLEDBUS_GIT_TAG "v2.2.0")
+        set(SIMPLEDBUS_GIT_TAG "origin/feat_threadsafe")
+
+        # set(SIMPLEDBUS_GIT_TAG "v2.2.0")
     endif()
 
     if(NOT SIMPLEDBUS_LOCAL_PATH)
@@ -23,6 +25,7 @@ if (SIMPLEDBUS_VENDORIZE)
         # custom logic between the FetchContent_Populate() and add_subdirectory()
         # calls.
         FetchContent_GetProperties(simpledbus)
+
         if(NOT simpledbus_POPULATED)
             FetchContent_Populate(simpledbus)
             list(APPEND CMAKE_MODULE_PATH "${simpledbus_SOURCE_DIR}/cmake/find")
@@ -41,5 +44,4 @@ if (SIMPLEDBUS_VENDORIZE)
     # found in the documentation of find_package() and
     # https://cmake.org/cmake/help/latest/manual/cmake-developer.7.html
     set(simpledbus_FOUND 1)
-
 endif()
