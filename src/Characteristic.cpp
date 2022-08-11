@@ -60,6 +60,18 @@ void Characteristic::start_notify() { gattcharacteristic1()->StartNotify(); }
 
 void Characteristic::stop_notify() { gattcharacteristic1()->StopNotify(); }
 
+std::shared_ptr<Descriptor> Characteristic::get_descriptor(const std::string& uuid) {
+    auto descriptors_all = descriptors();
+
+    for (auto& descriptor : descriptors_all) {
+        if (descriptor->uuid() == uuid) {
+            return descriptor;
+        }
+    }
+
+    throw Exception::DescriptorNotFoundException(uuid);
+}
+
 void Characteristic::set_on_value_changed(std::function<void(ByteStrArray new_value)> callback) {
     gattcharacteristic1()->OnValueChanged.load([this, callback]() { callback(gattcharacteristic1()->Value()); });
 }
